@@ -1,12 +1,14 @@
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Divider, Drawer, Icon, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { AppBar, Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Divider, Drawer, Icon, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { Box } from "@mui/system"
+import { useState } from "react";
 import { useAppThemeContext, useAuthContext } from "../../contexts";
 import { Enviroment } from "../../enviroment";
-import image from "../../../assets/imgcapa.jpg"
+
 
 interface IEventProviderProps {
     children: React.ReactNode
 }
+
 export function DrawerLeft({ children }: IEventProviderProps) {
     const theme = useTheme();
     const smDawn = useMediaQuery(theme.breakpoints.down('sm'));
@@ -14,10 +16,32 @@ export function DrawerLeft({ children }: IEventProviderProps) {
     const { toggleTheme } = useAppThemeContext()
     const dados_local_storage = localStorage.getItem(Enviroment.DADOS_USER)
     const userdados = JSON.parse(dados_local_storage as string)
-    console.log(userdados)
+    const [draweropen, setDrawerOpen] = useState<boolean>(false)
+    console.log(smDawn)
+
     return (
+
         <>
-            <Drawer open={true} variant={smDawn ? 'permanent' : 'persistent'}>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="fixed">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={() => setDrawerOpen(true)}
+                        >
+                            <Icon>menu</Icon>
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        </Typography>
+                        <Typography >Bem vindo, {userdados.username}!</Typography>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <Drawer open={!smDawn ? true : draweropen} variant={smDawn ? 'temporary' : 'permanent'} onClose={() => setDrawerOpen(false)}>
 
                 <Box width={theme.spacing(28)} height="100%" display="flex" flexDirection="column">
 
@@ -31,10 +55,10 @@ export function DrawerLeft({ children }: IEventProviderProps) {
                     <Divider />
 
                     <Box flex={1} textAlign="center">
-                        <h2>{userdados.firstName + ' ' + userdados.lastName}</h2>
+                        <h3>{userdados.firstName + ' ' + userdados.lastName}</h3>
 
                         <List component="nav">
-                            <ListItemButton onClick={() => alert('Bem vindo! Esse painel é apenas uma pequena demonstração...')}>
+                            <ListItemButton >
                                 <ListItemIcon>
                                     <Icon>home</Icon>
                                 </ListItemIcon>
@@ -43,7 +67,7 @@ export function DrawerLeft({ children }: IEventProviderProps) {
                         </List>
 
                         <List component="nav">
-                            <ListItemButton onClick={() => alert('Bem vindo! Esse painel é apenas uma pequena demonstração...')}>
+                            <ListItemButton >
                                 <ListItemIcon>
                                     <Icon>ballot</Icon>
                                 </ListItemIcon>
@@ -52,7 +76,7 @@ export function DrawerLeft({ children }: IEventProviderProps) {
                         </List>
 
                         <List component="nav">
-                            <ListItemButton onClick={() => alert('Bem vindo! Esse painel é apenas uma pequena demonstração...')}>
+                            <ListItemButton >
                                 <ListItemIcon>
                                     <Icon>settings</Icon>
                                 </ListItemIcon>
@@ -87,48 +111,9 @@ export function DrawerLeft({ children }: IEventProviderProps) {
             </Drawer>
 
             <Box height="100vh" marginLeft={smDawn ? 0 : theme.spacing(28)} display="flex" justifyContent="center" alignItems="center">
-                <Card sx={{ minWidth: 600 }}>
-                    <CardMedia
-                        component="img"
-                        height="194"
-                        image={image}
-                        alt="Paella dish"
-                    />
-                    <CardHeader
-                        avatar={
-                            <Avatar sx={{ height: theme.spacing(12), width: theme.spacing(12), bgcolor: "orange" }}
-                                aria-label="recipe" src={userdados.image}  >
-                            </Avatar>
-                        }
-                        action={
-                            <IconButton aria-label="settings">
-                            </IconButton>
-                        }
-                        title={userdados.username}
-                        subheader={userdados.email}
-                    />
-
-                    <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Sexo: {userdados.gender}
-                        </Typography>
-                        <Typography variant="h5" component="div">
-                            {userdados.firstName + ' ' + userdados.lastName}
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            ID: {userdados.id}
-                        </Typography>
-                        <Typography variant="body2">
-                            <br />
-                            {'"Uma simple tela. feita por mim ^^"'}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
-                </Card>
+                {children}
             </Box>
-            {children}
+
         </>
     )
 }

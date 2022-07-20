@@ -4,20 +4,20 @@ import { useCallback, useMemo, useState, useContext, createContext } from "react
 import { Box } from "@mui/system";
 
 interface IThemeContextDate {
-    themeName: 'light' | 'dark';
-    toggleTheme: () => void;
+  themeName: 'light' | 'dark';
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext({} as IThemeContextDate)
 
 export const useAppThemeContext = () => {
-    return useContext(ThemeContext);
+  return useContext(ThemeContext);
 }
 interface EventProviderProps {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
-export function AppThemeProvider ( {children}: EventProviderProps){
+export function AppThemeProvider({ children }: EventProviderProps) {
   const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = useCallback(() => {

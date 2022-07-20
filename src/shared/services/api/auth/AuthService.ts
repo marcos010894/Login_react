@@ -12,20 +12,19 @@ interface IAuth {
 }
 
 const auth = async (user: string, password: string): Promise<IAuth | Error> => {
-    try{
+    try {
         const { data } = await Api.post('/auth/login', {
-            "username":user,
-            "password":password
+            "username": user,
+            "password": password
         })
 
-        if(data){
+        if (data) {
             return data
         }
 
         return new Error('Error no login.')
-    }catch (error) {
-        console.log(error)
-        return new Error((error as {message:string}).message) || 'Erro no login..'
+    } catch (error) {
+        return new Error((error as { message: string }).message) || 'Erro no login..'
     }
 
 
@@ -33,5 +32,5 @@ const auth = async (user: string, password: string): Promise<IAuth | Error> => {
 
 
 export const AuthService = {
-    auth, 
+    auth,
 }
