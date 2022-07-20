@@ -44,7 +44,7 @@ export const CardInfo = () => {
                     </Typography>
                     <Typography variant="body2">
                         <br />
-                        {'"Uma simple tela. feita por mim ^^"'}
+                        {'"Uma simples tela. feita por mim ^^"'}
                     </Typography>
                 </CardContent>
                 <CardActions>
