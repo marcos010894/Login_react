@@ -3,18 +3,23 @@ import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes";
 import { DrawerLeft, FormLogin } from "./shared/components";
 import { AppThemeProvider } from "./shared/contexts";
+import { AuthProvider } from "./shared/contexts/AuthContext";
 import { LightTheme } from "./shared/themes";
 
 export const App = () => {
   return (
-    <AppThemeProvider>
-      <BrowserRouter>
-      {/* <FormLogin> */}
-        <DrawerLeft >
-          <AppRoutes />
-        </DrawerLeft>
-      {/* </FormLogin> */}
-      </BrowserRouter>
-    </AppThemeProvider>
+    <AuthProvider>
+      <AppThemeProvider>
+        
+      <FormLogin>
+        <BrowserRouter>
+            <DrawerLeft>
+              <AppRoutes />
+            </DrawerLeft>
+        </BrowserRouter>
+        
+        </FormLogin>
+      </AppThemeProvider>
+    </AuthProvider>
   );
 }

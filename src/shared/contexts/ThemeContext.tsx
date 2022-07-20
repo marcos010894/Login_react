@@ -18,7 +18,7 @@ interface EventProviderProps {
 }
 
 export function AppThemeProvider ( {children}: EventProviderProps){
-    const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
+  const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = useCallback(() => {
     setThemeName(oldThemeName => oldThemeName === 'light' ? 'dark' : 'light');

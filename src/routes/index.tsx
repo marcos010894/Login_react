@@ -8,9 +8,8 @@ export const AppRoutes = () => {
     const { toggleTheme } = useAppThemeContext();
     return (
         <Routes>
-            <Route path="/dash" element={<Button variant='contained' color='primary' style={{position:"absolute", bottom: 10, right: 0}} onClick={toggleTheme}>Mudar thema</Button>}/>
-            <Route path="/login" element={<Button variant='contained' color='primary' style={{position:"absolute", bottom: 10, right: 0}} onClick={toggleTheme}>Mudar thema</Button>}/>
-            <Route path="*" element={<Navigate to='/dash'/>}/>
+            <Route path="/DartSystem"/>
+            <Route path="*" element={<Navigate to='/DartSystem'/>}/>
         </Routes>
     )
 }
