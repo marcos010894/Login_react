@@ -1,10 +1,9 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material"
-import { Box } from "@mui/system"
 
-import image from "../../../assets/imgcapa.jpg"
-import { Enviroment } from "../../enviroment"
+import image from "../../assets/imgcapa.jpg"
+import { Enviroment } from "../../shared/enviroment"
 
-export const CardInfo = () => {
+export const Home2 = () => {
     const dados_local_storage = localStorage.getItem(Enviroment.DADOS_USER)
     const userdados = JSON.parse(dados_local_storage as string)
     const theme = useTheme();
@@ -12,12 +11,7 @@ export const CardInfo = () => {
     return (
         <>
             <Card sx={!smDawn ? { minWidth: '50%' } : { minWidth: '85%' }}>
-                <CardMedia
-                    component="img"
-                    height="194"
-                    image={image}
-                    alt="Paella dish"
-                />
+
                 <CardHeader
                     avatar={
                         <Avatar sx={{ height: theme.spacing(12), width: theme.spacing(12), bgcolor: "orange" }}
@@ -31,7 +25,12 @@ export const CardInfo = () => {
                     title={userdados.username}
                     subheader={userdados.email}
                 />
-
+                <CardMedia
+                    component="img"
+                    height="194"
+                    image={image}
+                    alt="Paella dish"
+                />
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Sexo: {userdados.gender}
@@ -44,7 +43,7 @@ export const CardInfo = () => {
                     </Typography>
                     <Typography variant="body2">
                         <br />
-                        {'"Uma simples tela. feita por mim ^^"'}
+                        {'"Uma segunda tela apenas para navegar. ^^"'}
                     </Typography>
                 </CardContent>
                 <CardActions>

@@ -1,6 +1,7 @@
 import { AppBar, Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Divider, Drawer, Icon, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { Box } from "@mui/system"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppThemeContext, useAuthContext } from "../../contexts";
 import { Enviroment } from "../../enviroment";
 
@@ -17,7 +18,8 @@ export function DrawerLeft({ children }: IEventProviderProps) {
     const dados_local_storage = localStorage.getItem(Enviroment.DADOS_USER)
     const userdados = JSON.parse(dados_local_storage as string)
     const [draweropen, setDrawerOpen] = useState<boolean>(false)
-    console.log(smDawn)
+    const navigate = useNavigate();
+
 
     return (
 
@@ -58,7 +60,7 @@ export function DrawerLeft({ children }: IEventProviderProps) {
                         <h3>{userdados.firstName + ' ' + userdados.lastName}</h3>
 
                         <List component="nav">
-                            <ListItemButton >
+                            <ListItemButton  onClick={() =>   navigate('/home')}>
                                 <ListItemIcon>
                                     <Icon>home</Icon>
                                 </ListItemIcon>
@@ -67,11 +69,11 @@ export function DrawerLeft({ children }: IEventProviderProps) {
                         </List>
 
                         <List component="nav">
-                            <ListItemButton >
+                            <ListItemButton  onClick={() =>   navigate('/home2')}>
                                 <ListItemIcon>
                                     <Icon>ballot</Icon>
                                 </ListItemIcon>
-                                <ListItemText primary="Receita" />
+                                <ListItemText primary="Home 2" />
                             </ListItemButton>
                         </List>
 

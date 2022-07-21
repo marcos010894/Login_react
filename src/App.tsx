@@ -13,7 +13,6 @@ export const App = () => {
         <FormLogin>
           <BrowserRouter>
             <DrawerLeft>
-              <CardInfo />
               <AppRoutes />
             </DrawerLeft>
           </BrowserRouter>
