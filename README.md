@@ -4,10 +4,10 @@
 
 Basta Digitar o comando 
 
-** yarn  **
+## yarn 
 
-#Rodar o projeto
+# Rodar o projeto
 
 basta dar o camando 
 
- ** yarn start **
+ ## yarn start **
